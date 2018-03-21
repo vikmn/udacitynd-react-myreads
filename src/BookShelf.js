@@ -4,7 +4,7 @@ import './App.css'
 
 const bookshelf = [
     {
-        category:"Currently Reading",
+        category:{ name: "Currently Reading", value: "currentlyReading" },
         books:[{
             name: "To Kill a Mockingbird",
             author: "Harper Lee",
@@ -17,7 +17,7 @@ const bookshelf = [
             }]
     },
     {
-        category: "Want to Read",
+        category: { name: "Want to Read", value: "wantToRead" },
         books:[
             {
                 name: "1776",
@@ -31,7 +31,7 @@ const bookshelf = [
             }]
     },
     {
-        category:"Read",
+        category:{ name: "Read", value: "read" },
         books: [
         {
             name: "The Hobbit",
@@ -48,17 +48,22 @@ const bookshelf = [
             author: "Mark Twain",
             backgroundImage: "http://books.google.com/books/content?id=32haAAAAMAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72yckZ5f5bDFVIf7BGPbjA0KYYtlQ__nWB-hI_YZmZ-fScYwFy4O_fWOcPwf-pgv3pPQNJP_sT5J_xOUciD8WaKmevh1rUR-1jk7g1aCD_KeJaOpjVu0cm_11BBIUXdxbFkVMdi&source=gbs_api"
         }]
+    },
+    {
+        category: { name: "None", value: "none" },
+        books:[]
     }
 ];
+const categories = bookshelf.map(shelf=> shelf.category)
 
 class BookShelf extends Component{
     render() {
         return (<div className="list-books-content">
             <div>
                 {bookshelf.map(shelf =>
-                    <div key={shelf.category} className="bookshelf">
-                        <h2 className="bookshelf-title">{shelf.category}</h2>
-                        <BooksGrid books={shelf.books} />
+                    <div key={shelf.category.name} className="bookshelf">
+                        <h2 className="bookshelf-title">{shelf.category.name}</h2>
+                        <BooksGrid books={shelf.books} categories={categories}/>
                     </div>
                 )}
             </div>
