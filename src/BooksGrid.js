@@ -10,7 +10,7 @@ class BooksGrid extends Component{
               <li key={book.name}>
                 <div className="book">
                   <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url({{book.backgroundImage}})' }}/>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.backgroundImage})` }}/>
                     <ShelfChanger />
                   </div>
                   <div className="book-title">{book.name}</div>
