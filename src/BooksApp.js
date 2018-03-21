@@ -2,7 +2,6 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BooksGrid from './BooksGrid'
-import ShelfChanger from './ShelfChanger'
 const currentlyReading =
   [{
     name: "To Kill a Mockingbird",
