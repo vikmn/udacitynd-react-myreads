@@ -1,12 +1,9 @@
 import React,{ Component } from 'react'
+import PropTypes from 'prop-types'
 import ShelfChanger from './ShelfChanger'
 import './App.css'
 
 class BooksGrid extends Component{
-  // constructor(props){
-  //   super(props);
-
-  // }
   render() {
     return (<ol className="books-grid">
       {this.props.books.map(book =>
@@ -22,6 +19,10 @@ class BooksGrid extends Component{
         </li>)}
     </ol>);
     }
+}
+
+BooksGrid.propTypes = {
+  books : PropTypes.arrayOf(PropTypes.object)
 }
 
 export default BooksGrid
