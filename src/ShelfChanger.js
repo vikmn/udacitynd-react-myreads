@@ -2,15 +2,25 @@ import React, { Component } from 'react';
 import './App.css'
 
 class ShelfChanger extends Component{
-    render() {
-        return(
-        <div className="book-shelf-changer">
-        <select>
-              <option value="none" disabled>Move to...</option>
-              {this.props.categories.map(category =>
-                <option key={category.value} value={category.value}>{category.name}</option>)}
-        </select>
-      </div>)
-    }
+  constructor(props) {
+    super(props);
+    this.state={category:"none"}
+  }
+  
+  setCategory = () => {
+    this.setState({ category: "read" });
+  }
+  
+  render() {
+      return(
+      <div className="book-shelf-changer">
+          <select value={this.state.category} onChange={this.setCategory}>
+            <option value="none" disabled>Move to...</option>
+            {this.props.categories.map(category =>
+              <option key={category.value} value={category.value}>{category.name}</option>)}
+            <option value="none">None</option>
+      </select>
+    </div>)
+  }
 }
 export default ShelfChanger
