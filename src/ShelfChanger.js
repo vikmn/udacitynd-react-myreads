@@ -4,11 +4,13 @@ import './App.css'
 class ShelfChanger extends Component{
   constructor(props) {
     super(props);
-    this.state={category:"none"}
+    this.state = { category: "none" }
+    
   }
   
-  setCategory = () => {
-    this.setState({ category: "read" });
+  setCategory = (event) => {
+    console.log(event.target.value);
+    this.setState({ category: event.target.value });
   }
   
   render() {
