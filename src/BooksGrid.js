@@ -13,7 +13,7 @@ class BooksGrid extends Component{
         <li key={book.title}>
           <div className="book">
             <div className="book-top">
-              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.backgroundImage})` }} />
+              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
               <ShelfChanger categories={this.props.categories} shelf={this.props.shelf.value} />
             </div>
             <div className="book-title">{book.title}</div>
