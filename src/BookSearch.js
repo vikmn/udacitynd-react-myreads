@@ -1,17 +1,8 @@
 import React, { Component } from 'react'
 import BooksGrid from './BooksGrid'
-import './App.css'
+import { getAll } from './BooksAPI'
 
-const books = [{
-    name: "To Kill a Mockingbird",
-    author: "Harper Lee",
-    backgroundImage: "http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api"
-},
-{
-    name: "Ender's Game",
-    author: "Orson Scott Card",
-    backgroundImage: "http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api"
-}];
+import './App.css'
 const categories = [
     {
         name: "Currently Reading",
@@ -24,10 +15,19 @@ const categories = [
     {
         name: "Read",
         value: "read"
-    },
-]
+    }
+];
 
 class BookSearch extends Component{
+    constructor(props) {
+        super(props);
+        this.state = { books: [] };
+    }
+    componentDidMount() {
+        getAll().then(bookList => {
+            this.setState({ books : bookList });
+        });
+    }
     render() {
         return (<div className="search-books">
             <div className="search-books-bar">
@@ -45,7 +45,7 @@ class BookSearch extends Component{
                 </div>
             </div>
             <div className="search-books-results">
-                <BooksGrid books={books} categories={categories} shelf={{ value: "none" } }/>
+                <BooksGrid books={this.state.books} categories={categories} shelf={{ value: "none" } }/>
             </div>
         </div>);
     }
