@@ -65,12 +65,15 @@ class BookShelf extends Component{
     //     });
     // }
     render() {
+        const { bookShelves } = this.state;
         return (<div className="list-books-content">
             <div>
-                {this.state.bookShelves.map(shelf =>
+                {bookShelves.map(shelf =>
                     <div key={shelf.name} className="bookshelf">
                         <h2 className="bookshelf-title">{shelf.name}</h2>
-                        <BooksGrid books={shelf.books} shelf={shelf} categories={this.state.bookShelves}/>
+                        <div className="bookshelf-books">
+                            <BooksGrid books={shelf.books} shelf={shelf} categories={bookShelves} />
+                        </div>    
                     </div>
                 )}
             </div>
