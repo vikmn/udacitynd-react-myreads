@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import BooksGrid from './BooksGrid'
 import './App.css'
+// import { getAll } from './BooksAPI';
 
-const bookshelf = [
+const bookShelves = [
     {
-        category:{ name: "Currently Reading", value: "currentlyReading" },
+        name: "Currently Reading",
+        value: "currentlyReading",
         books:[{
             name: "To Kill a Mockingbird",
             author: "Harper Lee",
@@ -14,10 +16,11 @@ const bookshelf = [
             name: "Ender's Game",
             author: "Orson Scott Card",
             backgroundImage: "http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api"
-            }]
+        }]
     },
     {
-        category: { name: "Want to Read", value: "wantToRead" },
+        name: "Want to Read",
+        value: "wantToRead",
         books:[
             {
                 name: "1776",
@@ -30,8 +33,9 @@ const bookshelf = [
                 backgroundImage: "http://books.google.com/books/content?id=wrOQLV6xB-wC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72G3gA5A-Ka8XjOZGDFLAoUeMQBqZ9y-LCspZ2dzJTugcOcJ4C7FP0tDA8s1h9f480ISXuvYhA_ZpdvRArUL-mZyD4WW7CHyEqHYq9D3kGnrZCNiqxSRhry8TiFDCMWP61ujflB&source=gbs_api"
             }]
     },
-    {
-        category:{ name: "Read", value: "read" },
+    {        
+        name: "Read",
+        value: "read",
         books: [
         {
             name: "The Hobbit",
@@ -47,19 +51,28 @@ const bookshelf = [
             name: "The Adventures of Tom Sawyer",
             author: "Mark Twain",
             backgroundImage: "http://books.google.com/books/content?id=32haAAAAMAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72yckZ5f5bDFVIf7BGPbjA0KYYtlQ__nWB-hI_YZmZ-fScYwFy4O_fWOcPwf-pgv3pPQNJP_sT5J_xOUciD8WaKmevh1rUR-1jk7g1aCD_KeJaOpjVu0cm_11BBIUXdxbFkVMdi&source=gbs_api"
-        }]
-    }    
+        }],
+    }
 ];
-const categories = bookshelf.map(shelf=> shelf.category)
+const categories = [
+    { name: "Currently Reading", value: "currentlyReading" },
+    { name: "Want to Read", value: "wantToRead" },
+    { name: "Read", value: "read" }    
+];
 
 class BookShelf extends Component{
+    // componentDidMount() {
+    //     getAll().then(res => {
+    //             console.log(res);   
+    //     });
+    // }
     render() {
         return (<div className="list-books-content">
             <div>
-                {bookshelf.map(shelf =>
-                    <div key={shelf.category.name} className="bookshelf">
-                        <h2 className="bookshelf-title">{shelf.category.name}</h2>
-                        <BooksGrid books={shelf.books} shelf={shelf.category} categories={categories}/>
+                {bookShelves.map(shelf =>
+                    <div key={shelf.name} className="bookshelf">
+                        <h2 className="bookshelf-title">{shelf.name}</h2>
+                        <BooksGrid books={shelf.books} shelf={shelf} categories={categories}/>
                     </div>
                 )}
             </div>
