@@ -4,25 +4,24 @@ import './App.css'
 class ShelfChanger extends Component{
   constructor(props) {
     super(props);
-    this.state = { category: "none" }
+    this.state = { category: props.shelf };
     
   }
   
   setCategory = (event) => {
-    console.log(event.target.value);
     this.setState({ category: event.target.value });
   }
   
   render() {
-      return(
+    return (
       <div className="book-shelf-changer">
-          <select value={this.state.category} onChange={this.setCategory}>
-            <option value="none" disabled>Move to...</option>
-            {this.props.categories.map(category =>
-              <option key={category.value} value={category.value}>{category.name}</option>)}
+        <select value={this.state.category} onChange={this.setCategory}>
+          <option value="none" disabled>Move to...</option>
+          {this.props.categories.map(category =>
+            <option key={category.value} value={category.value}>{category.name}</option>)}
             <option value="none">None</option>
-      </select>
-    </div>)
+        </select>
+      </div>);
   }
 }
 export default ShelfChanger

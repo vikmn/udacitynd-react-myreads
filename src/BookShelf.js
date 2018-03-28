@@ -59,7 +59,7 @@ class BookShelf extends Component{
                 {bookshelf.map(shelf =>
                     <div key={shelf.category.name} className="bookshelf">
                         <h2 className="bookshelf-title">{shelf.category.name}</h2>
-                        <BooksGrid books={shelf.books} categories={categories}/>
+                        <BooksGrid books={shelf.books} shelf={shelf.category} categories={categories}/>
                     </div>
                 )}
             </div>
