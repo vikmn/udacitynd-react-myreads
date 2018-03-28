@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import BooksGrid from './BooksGrid'
 import { getAll } from './BooksAPI'
 import './App.css'
@@ -29,10 +30,9 @@ class BookSearch extends Component{
         });
     }
     render() {
-        console.log(this.state.books);
         return (<div className="search-books">
             <div className="search-books-bar">
-                <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+                <a className="close-search" onClick={this.props.onClose}>Close</a>
                 <div className="search-books-input-wrapper">
                     {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -51,5 +51,7 @@ class BookSearch extends Component{
         </div>);
     }
 }
+
+BookSearch.propTypes = { onClose: PropTypes.func }
 
 export default BookSearch

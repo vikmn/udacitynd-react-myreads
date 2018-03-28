@@ -19,7 +19,7 @@ class BooksApp extends Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <BookSearch/>
+          <BookSearch onClose={() => this.setState({ showSearchPage: false })}/>
         ) : (
           <div className="list-books">
             <div className="list-books-title">
