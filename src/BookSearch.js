@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import BooksGrid from './BooksGrid'
 import { getAll } from './BooksAPI'
 import './App.css'
@@ -32,7 +32,7 @@ class BookSearch extends Component{
     render() {
         return (<div className="search-books">
             <div className="search-books-bar">
-                <a className="close-search" onClick={this.props.onClose}>Close</a>
+                <Link  to="/" className="close-search">Close</Link>
                 <div className="search-books-input-wrapper">
                     {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -52,6 +52,5 @@ class BookSearch extends Component{
     }
 }
 
-BookSearch.propTypes = { onClose: PropTypes.func }
 
 export default BookSearch
