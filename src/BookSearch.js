@@ -24,11 +24,13 @@ class BookSearch extends Component{
         super(props);
         this.state = { books: [] };
     }
+
     componentDidMount() {
         getAll().then(bookList => {
             this.setState({ books : bookList });
         });
     }
+
     render() {
         return (<div className="search-books">
             <div className="search-books-bar">

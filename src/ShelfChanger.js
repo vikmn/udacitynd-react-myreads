@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css'
 
+
 class ShelfChanger extends Component{
   constructor(props) {
     super(props);
+    console.log(props.shelf)
     this.state = { category: props.shelf };
 
   }
@@ -18,7 +20,7 @@ class ShelfChanger extends Component{
         <select value={this.state.category} onChange={this.setCategory}>
           <option value="none" disabled>Move to...</option>
           {this.props.categories.map(category =>
-            <option key={category.value} value={category.value}>{category.name}</option>)}
+            <option key={category.name} value={category.value}>{category.name}</option>)}
             <option value="none">None</option>
         </select>
       </div>);
