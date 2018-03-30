@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BooksGrid from './BooksGrid'
-import { getAll } from './BooksAPI'
+import { search } from './BooksAPI'
 import './App.css'
 
 const categories = [
@@ -25,9 +25,13 @@ class BookSearch extends Component{
         this.state = { books: [] };
     }
 
-    componentDidMount() {
-        getAll().then(bookList => {
-            this.setState({ books : bookList });
+    doSearch = (event) =>{
+        const {value} = event.target;
+        search(value).then(bookList => {
+            if(!Array.isArray(bookList)){
+                bookList = [];
+            }
+            this.setState({ books : bookList });             
         });
     }
 
@@ -44,15 +48,14 @@ class BookSearch extends Component{
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-                    <input type="text" placeholder="Search by title or author" />
+                    <input type="text" placeholder="Search by title or author" onChange={ this.doSearch } />
                 </div>
             </div>
             <div className="search-books-results">
-                <BooksGrid books={this.state.books} categories={categories} shelf={{ value: "none" } }/>
+                <BooksGrid books={this.state.books} categories={categories} shelf={"none"}/>
             </div>
         </div>);
     }
 }
-
 
 export default BookSearch

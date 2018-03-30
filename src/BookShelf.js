@@ -9,9 +9,9 @@ const categories = [
     
   ];
 
-Array.prototype.groupBy = function(prop) {
-    return this.reduce(function(groups, item) {
-      const val = item[prop]
+const groupBy = (array,groupByProperty) => {
+    return array.reduce(function(groups, item) {
+      const val = item[groupByProperty]
       groups[val] = groups[val] || []
       groups[val].push(item)
       return groups
@@ -30,7 +30,7 @@ class BookShelf extends Component{
 
     componentDidMount() {
         getAll().then(bookList => {
-            const  p = bookList.groupBy('shelf');
+            const  p = groupBy(bookList,'shelf');
             this.setState({ bookShelves: p });
             this.setState({ categories: Object.keys(p) });
         });

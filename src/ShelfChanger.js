@@ -5,7 +5,6 @@ import './App.css'
 class ShelfChanger extends Component{
   constructor(props) {
     super(props);
-    console.log(props.shelf)
     this.state = { category: props.shelf };
 
   }
