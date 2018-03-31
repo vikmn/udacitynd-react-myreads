@@ -26,12 +26,19 @@ class BookShelf extends Component {
     };
   }
 
-  componentDidMount() {
+  getMyReads = () => {
+    console.log("getting my reads");
     getAll().then(bookList => {
-      const p = groupBy(bookList, "shelf");
-      this.setState({ bookShelves: p });
-      this.setState({ categories: Object.keys(p) });
+      const groupedBooks = groupBy(bookList, "shelf");
+      this.setState({
+        bookShelves: groupedBooks,
+        categories: Object.keys(groupedBooks)
+      });
     });
+  };
+
+  componentDidMount() {
+    this.getMyReads();
   }
 
   render() {
@@ -47,6 +54,7 @@ class BookShelf extends Component {
                   books={bookShelves[shelf]}
                   shelf={shelf}
                   categories={categories}
+                  onRefresh={this.getMyReads}
                 />
               </div>
             </div>

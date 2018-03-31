@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ShelfChanger from "./ShelfChanger";
+import { update } from "./BooksAPI";
 import "./App.css";
 
 class BooksGrid extends Component {
+  moveToShelf = () => {
+    this.props.onRefresh();
+  }
+
   render() {
     return (
       <ol className="books-grid">
@@ -24,6 +29,8 @@ class BooksGrid extends Component {
                 <ShelfChanger
                   categories={this.props.categories}
                   shelf={this.props.shelf}
+                  book={book}
+                  handleMoveToShelf={this.moveToShelf}
                 />
               </div>
               <div className="book-title">{book.title}</div>

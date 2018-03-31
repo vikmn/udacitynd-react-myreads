@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { update } from "./BooksAPI";
 import "./App.css";
 
 class ShelfChanger extends Component {
@@ -8,8 +9,15 @@ class ShelfChanger extends Component {
   }
 
   moveToShelf = event => {
-    this.setState({ shelf: event.target.value });
-  };
+    this.moveBookToShelf(this.props.book, event.target.value);
+  }
+
+  moveBookToShelf = (book, shelf) => {
+    update(book, shelf).then(res => {
+      this.setState({ shelf: shelf });
+      this.props.handleMoveToShelf();
+    });
+  }
 
   render() {
     return (
