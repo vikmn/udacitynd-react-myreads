@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ShelfChanger from "./ShelfChanger";
-import { update } from "./BooksAPI";
 import "./App.css";
 
 class BooksGrid extends Component {

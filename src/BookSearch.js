@@ -2,22 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import BooksGrid from "./BooksGrid";
 import { search } from "./BooksAPI";
+import { categories } from "./Utils";
 import "./App.css";
-
-const categories = [
-  {
-    name: "Currently Reading",
-    value: "currentlyReading"
-  },
-  {
-    name: "Want to Read",
-    value: "wantToRead"
-  },
-  {
-    name: "Read",
-    value: "read"
-  }
-];
 
 class BookSearch extends Component {
   constructor(props) {

@@ -1,21 +1,9 @@
 import React, { Component } from "react";
 import BooksGrid from "./BooksGrid";
 import { getAll } from "./BooksAPI";
-import "./App.css";
-const categories = [
-  { name: "Currently Reading", value: "currentlyReading" },
-  { name: "Read", value: "read" },
-  { name: "Want to Read", value: "wantToRead" }
-];
+import { groupBy, categories } from "./Utils";
 
-const groupBy = (array, groupByProperty) => {
-  return array.reduce(function(groups, item) {
-    const val = item[groupByProperty];
-    groups[val] = groups[val] || [];
-    groups[val].push(item);
-    return groups;
-  }, {});
-};
+import "./App.css";
 
 class BookShelf extends Component {
   constructor(props) {
@@ -27,7 +15,6 @@ class BookShelf extends Component {
   }
 
   getMyReads = () => {
-    console.log("getting my reads");
     getAll().then(bookList => {
       const groupedBooks = groupBy(bookList, "shelf");
       this.setState({
