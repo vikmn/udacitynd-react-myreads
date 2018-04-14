@@ -4,9 +4,12 @@ import ShelfChanger from "./ShelfChanger";
 import "./App.css";
 
 class BooksGrid extends Component {
+  
+  defaultProps = { shelf: "none" };
+
   moveToShelf = () => {
     this.props.onRefresh();
-  }
+  };
 
   render() {
     return (

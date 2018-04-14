@@ -40,7 +40,6 @@ class BookSearch extends Component {
           <BooksGrid
             books={this.state.books}
             categories={categories}
-            shelf={"none"}
           />
         </div>
       </div>
