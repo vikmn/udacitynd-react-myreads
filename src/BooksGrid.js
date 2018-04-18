@@ -7,10 +7,6 @@ class BooksGrid extends Component {
   
   static defaultProps = { shelf: "none" };
 
-  moveToShelf = () => {
-    this.props.onRefresh();
-  };
-
   render() {
     return (
       <ol className="books-grid">
@@ -32,7 +28,7 @@ class BooksGrid extends Component {
                   categories={this.props.categories}
                   shelf={this.props.shelf}
                   book={book}
-                  handleMoveToShelf={this.moveToShelf}
+                  handleMoveToShelf={this.props.onRefresh}
                 />
               </div>
               <div className="book-title">{book.title}</div>

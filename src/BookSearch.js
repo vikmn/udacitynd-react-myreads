@@ -11,15 +11,19 @@ class BookSearch extends Component {
     this.state = { books: [] };
   }
 
+  populateResults = results => this.setState({ books: results });
+
   doSearch = event => {
     const { value } = event.target;
-    search(value).then(bookList => {
-      if (!Array.isArray(bookList)) {
-        bookList = [];
+    search(value).then(results => {
+      if (!Array.isArray(results)) {
+        results = [];
       }
-      this.setState({ books: bookList });
+      this.populateResults(results);
     });
   };
+
+  dummySearch = book => this.populateResults(this.state.books.filter(b => b.id !== book.id));
 
   render() {
     return (
@@ -40,6 +44,7 @@ class BookSearch extends Component {
           <BooksGrid
             books={this.state.books}
             categories={categories}
+            onRefresh={this.dummySearch}
           />
         </div>
       </div>

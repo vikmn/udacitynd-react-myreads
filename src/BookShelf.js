@@ -14,7 +14,7 @@ class BookShelf extends Component {
     };
   }
 
-  getMyReads = () => {
+  getMyReads = (book) => {
     getAll().then(bookList => {
       const groupedBooks = groupBy(bookList, "shelf");
       this.setState({
