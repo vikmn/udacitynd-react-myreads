@@ -8,21 +8,22 @@ class ShelfChanger extends Component {
     this.state = { shelf: props.shelf };
   }
 
-  moveToShelf = event => {
-    this.moveBookToShelf(this.props.book, event.target.value);
+  moveBook = event => {
+    const shelf = event.target.value;
+    this.moveBookToShelf(this.props.book, shelf);
   }
 
   moveBookToShelf = (book, shelf) => {
     update(book, shelf).then(res => {
       this.setState({ shelf: shelf });
-      this.props.handleMoveToShelf(book);
+      this.props.onBookMoved(book);
     });
   }
 
   render() {
     return (
       <div className="book-shelf-changer">
-        <select value={this.state.shelf} onChange={this.moveToShelf}>
+        <select value={this.state.shelf} onChange={this.moveBook}>
           <option value="none" disabled>
             Move to...
           </option>

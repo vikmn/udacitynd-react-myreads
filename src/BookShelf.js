@@ -13,8 +13,10 @@ class BookShelf extends Component {
       categories: []
     };
   }
-
-  getMyReads = (book) => {
+  
+  moveBook = book => this.getMyReads();
+  
+  getMyReads = () => {
     getAll().then(bookList => {
       const groupedBooks = groupBy(bookList, "shelf");
       this.setState({
@@ -41,7 +43,7 @@ class BookShelf extends Component {
                   books={bookShelves[shelf]}
                   shelf={shelf}
                   categories={categories}
-                  onRefresh={this.getMyReads}
+                  onBookMoved={this.moveBook}
                 />
               </div>
             </div>

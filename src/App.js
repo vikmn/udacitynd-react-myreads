@@ -3,13 +3,32 @@ import { Link, Route } from "react-router-dom";
 
 import BookShelf from "./BookShelf";
 import BookSearch from "./BookSearch";
+import { getAll } from "./BooksAPI";
+
 import "./App.css";
 
 class BooksApp extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = { books: [] };
+  }
+
+  getMyReads = () => {
+    getAll().then(books => {
+      this.setState({ books: books });
+    });
+  };
+
+  componentDidMount() {
+    this.getMyReads();
+  }
+
   render() {
     return (
       <div className="app">
-        <Route path="/search" component={BookSearch} />
+        <Route path="/search" render={() =>
+          (<BookSearch myReads={this.state.books}/>)} />
         <Route
           path="/"
           exact

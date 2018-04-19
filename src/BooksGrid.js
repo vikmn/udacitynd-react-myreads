@@ -28,7 +28,7 @@ class BooksGrid extends Component {
                   categories={this.props.categories}
                   shelf={this.props.shelf}
                   book={book}
-                  handleMoveToShelf={this.props.onRefresh}
+                  onBookMoved={this.props.onBookMoved}
                 />
               </div>
               <div className="book-title">{book.title}</div>

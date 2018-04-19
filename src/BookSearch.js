@@ -6,12 +6,16 @@ import { categories } from "./Utils";
 import "./App.css";
 
 class BookSearch extends Component {
+
   constructor(props) {
     super(props);
     this.state = { books: [] };
   }
 
-  populateResults = results => this.setState({ books: results });
+  populateResults = results => {
+    const books = results.filter(result => this.props.myReads.filter(myread => myread.id !== result.id));
+    this.setState({ books: books });
+  }
 
   doSearch = event => {
     const { value } = event.target;
@@ -23,7 +27,7 @@ class BookSearch extends Component {
     });
   };
 
-  dummySearch = book => this.populateResults(this.state.books.filter(b => b.id !== book.id));
+  addBookToShelf = book => this.populateResults(this.state.books.filter(b => b.id !== book.id));
 
   render() {
     return (
@@ -44,7 +48,7 @@ class BookSearch extends Component {
           <BooksGrid
             books={this.state.books}
             categories={categories}
-            onRefresh={this.dummySearch}
+            onBookMoved={this.addBookToShelf}
           />
         </div>
       </div>
