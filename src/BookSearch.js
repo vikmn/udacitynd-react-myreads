@@ -19,6 +19,7 @@ class BookSearch extends Component {
 
   doSearch = event => {
     const { value } = event.target;
+    
     search(value).then(results => {
       if (!Array.isArray(results)) {
         results = [];

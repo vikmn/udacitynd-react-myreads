@@ -9,8 +9,8 @@ class BookShelf extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookShelves: [],
-      categories: []
+      categories: [],
+      shelves: []
     };
   }
   
@@ -19,9 +19,16 @@ class BookShelf extends Component {
   getMyReads = () => {
     getAll().then(bookList => {
       const groupedBooks = groupBy(bookList, "shelf");
+      const shelves = categories.map(category => {
+        return {
+          name: category.name,
+          value: category.value,
+          books: groupedBooks[category.value] || []
+        };
+      });
       this.setState({
-        bookShelves: groupedBooks,
-        categories: Object.keys(groupedBooks)
+        shelves: shelves,
+        categories: shelves.map(shelf => shelf.value)
       });
     });
   };
@@ -31,17 +38,17 @@ class BookShelf extends Component {
   }
 
   render() {
-    const { bookShelves } = this.state;
+    const { shelves } = this.state;
     return (
       <div className="list-books-content">
         <div>
-          {Object.keys(bookShelves).map(shelf => (
-            <div key={shelf} className="bookshelf">
-              <h2 className="bookshelf-title">{shelf}</h2>
+          {shelves.map(shelf => (
+            <div key={shelf.value} className="bookshelf">
+              <h2 className="bookshelf-title">{shelf.name}</h2>
               <div className="bookshelf-books">
                 <BooksGrid
-                  books={bookShelves[shelf]}
-                  shelf={shelf}
+                  books={shelf.books}
+                  shelf={shelf.value}
                   categories={categories}
                   onBookMoved={this.moveBook}
                 />
