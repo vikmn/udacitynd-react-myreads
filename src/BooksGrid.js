@@ -1,14 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ShelfChanger from "./ShelfChanger";
 import "./App.css";
 
-class BooksGrid extends Component {
-
-  render() {
+const BooksGrid = ({ shelf, onBookMoved }) =>
+{
     return (
       <ol className="books-grid">
-        {this.props.shelf.books.map(book => (
+        {shelf.books.map(book => (
           <li key={book.id}>
             <div className="book">
               <div className="book-top">
@@ -23,9 +22,9 @@ class BooksGrid extends Component {
                   />
                 )}
                 <ShelfChanger
-                  currentShelf={this.props.shelf.value}
+                  currentShelf={shelf.value}
                   book={book}
-                  onBookMoved={this.props.onBookMoved}
+                  onBookMoved={onBookMoved}
                 />
               </div>
               <div className="book-title">{book.title}</div>
@@ -38,7 +37,6 @@ class BooksGrid extends Component {
       </ol>
     );
   }
-}
 
 BooksGrid.propTypes = {
   shelf: PropTypes.object.isRequired,
