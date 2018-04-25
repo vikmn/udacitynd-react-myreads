@@ -18,6 +18,8 @@ class ShelfChanger extends Component {
   moveBookToShelf = (book, shelf) => {
     update(book, shelf).then(res => {
       this.setState({ shelf: shelf });
+      book.shelf = shelf;
+      console.log(book);
       this.props.onBookMoved(book);
     });
   }
