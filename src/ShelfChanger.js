@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { update } from "./BooksAPI";
+import { categories } from "./Utils";
 import "./App.css";
 
 class ShelfChanger extends Component {
@@ -27,7 +28,7 @@ class ShelfChanger extends Component {
           <option value="none" disabled>
             Move to...
           </option>
-          {this.props.categories.map(category => (
+          {categories.map(category => (
             <option key={category.name} value={category.value}>
               {category.name}
             </option>

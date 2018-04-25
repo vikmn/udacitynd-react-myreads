@@ -49,7 +49,6 @@ class BookShelf extends Component {
                 <BooksGrid
                   books={shelf.books}
                   shelf={shelf.value}
-                  categories={categories}
                   onBookMoved={this.moveBook}
                 />
               </div>

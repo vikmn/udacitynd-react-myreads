@@ -25,7 +25,6 @@ class BooksGrid extends Component {
                   />
                 )}
                 <ShelfChanger
-                  categories={this.props.categories}
                   shelf={this.props.shelf}
                   book={book}
                   onBookMoved={this.props.onBookMoved}

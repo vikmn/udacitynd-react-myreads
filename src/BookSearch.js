@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import BooksGrid from "./BooksGrid";
 import { search } from "./BooksAPI";
-import { categories } from "./Utils";
 import "./App.css";
 
 class BookSearch extends Component {
@@ -48,7 +47,6 @@ class BookSearch extends Component {
         <div className="search-books-results">
           <BooksGrid
             books={this.state.books}
-            categories={categories}
             onBookMoved={this.addBookToShelf}
           />
         </div>
