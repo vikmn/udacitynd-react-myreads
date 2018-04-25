@@ -41,7 +41,8 @@ class BooksGrid extends Component {
 }
 
 BooksGrid.propTypes = {
-  shelf: PropTypes.object.isRequired
+  shelf: PropTypes.object.isRequired,
+  onBookMoved: PropTypes.func.isRequired
 };
 
 export default BooksGrid;

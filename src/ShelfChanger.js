@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { update } from "./BooksAPI";
 import { categories } from "./Utils";
 import "./App.css";
@@ -39,4 +40,9 @@ class ShelfChanger extends Component {
     );
   }
 }
+
+ShelfChanger.propTypes = {
+  currentShelf: PropTypes.string.isRequired,
+  onBookMoved: PropTypes.func.isRequired
+};
 export default ShelfChanger;
