@@ -4,13 +4,11 @@ import ShelfChanger from "./ShelfChanger";
 import "./App.css";
 
 class BooksGrid extends Component {
-  
-  static defaultProps = { shelf: "none" };
 
   render() {
     return (
       <ol className="books-grid">
-        {this.props.books.map(book => (
+        {this.props.shelf.books.map(book => (
           <li key={book.id}>
             <div className="book">
               <div className="book-top">
@@ -25,7 +23,7 @@ class BooksGrid extends Component {
                   />
                 )}
                 <ShelfChanger
-                  shelf={this.props.shelf}
+                  shelf={this.props.shelf.value}
                   book={book}
                   onBookMoved={this.props.onBookMoved}
                 />
@@ -43,7 +41,7 @@ class BooksGrid extends Component {
 }
 
 BooksGrid.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.object)
+  shelf: PropTypes.object.isRequired
 };
 
 export default BooksGrid;

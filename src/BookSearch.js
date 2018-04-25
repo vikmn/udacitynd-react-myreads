@@ -8,12 +8,28 @@ class BookSearch extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { books: [] };
+    this.state = {
+      books: [],
+      shelf: {
+        name: "None",
+        value: "none",
+        books: []
+      }
+    };
   }
 
   populateResults = results => {
     const books = results.filter(result => this.props.myReads.filter(myread => myread.id !== result.id));
-    this.setState({ books: books });
+    const shelf = {
+      name: "None",
+      value: "none",
+      books: books
+    };
+    console.log(shelf);
+    this.setState({
+      books: books,
+      shelf: shelf
+    });
   }
 
   doSearch = event => {
@@ -27,7 +43,7 @@ class BookSearch extends Component {
     });
   };
 
-  addBookToShelf = book => this.populateResults(this.state.books.filter(b => b.id !== book.id));
+  moveBookToShelf = book => this.populateResults(this.state.shelf.books.filter(b => b.id !== book.id));
 
   render() {
     return (
@@ -46,8 +62,8 @@ class BookSearch extends Component {
         </div>
         <div className="search-books-results">
           <BooksGrid
-            books={this.state.books}
-            onBookMoved={this.addBookToShelf}
+            shelf={this.state.shelf}
+            onBookMoved={this.moveBookToShelf}
           />
         </div>
       </div>

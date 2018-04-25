@@ -47,8 +47,7 @@ class BookShelf extends Component {
               <h2 className="bookshelf-title">{shelf.name}</h2>
               <div className="bookshelf-books">
                 <BooksGrid
-                  books={shelf.books}
-                  shelf={shelf.value}
+                  shelf={shelf}
                   onBookMoved={this.moveBook}
                 />
               </div>
