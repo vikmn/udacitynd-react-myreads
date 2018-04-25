@@ -6,12 +6,12 @@ import "./App.css";
 class ShelfChanger extends Component {
   constructor(props) {
     super(props);
-    this.state = { shelf: props.shelf };
+    this.state = { shelf: props.currentShelf };
   }
 
   moveBook = event => {
-    const shelf = event.target.value;
-    this.moveBookToShelf(this.props.book, shelf);
+    const targetShelf = event.target.value;
+    this.moveBookToShelf(this.props.book, targetShelf);
   }
 
   moveBookToShelf = (book, shelf) => {

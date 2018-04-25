@@ -23,7 +23,7 @@ class BooksGrid extends Component {
                   />
                 )}
                 <ShelfChanger
-                  shelf={this.props.shelf.value}
+                  currentShelf={this.props.shelf.value}
                   book={book}
                   onBookMoved={this.props.onBookMoved}
                 />
