@@ -16,7 +16,7 @@ class BooksApp extends Component {
 
   getMyReads = () => {
     getAll().then(books => {
-      this.setState({ books: books });
+      this.setState({ books });
     });
   };
 
@@ -37,7 +37,7 @@ class BooksApp extends Component {
               <div className="list-books-title">
                 <h1>MyReads</h1>
               </div>
-              <BookShelf />
+              <BookShelf myReads={this.state.books}/>
               <div className="open-search">
                 <Link to="/search">Add a book</Link>
               </div>
