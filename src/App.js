@@ -14,21 +14,13 @@ class BooksApp extends Component {
     this.state = { books: [] };
   }
 
-  getMyReads = () => {
-    getAll().then(books => {
-      this.setState({ books: books });
-    });
-  };
-
-  componentDidMount() {
-    this.getMyReads();
-  }
+  getMyReads = () => getAll();
 
   render() {
     return (
       <div className="app">
         <Route path="/search" render={() =>
-          (<BookSearch myReads={this.state.books}/>)} />
+          (<BookSearch onMyReadsRequested={this.getMyReads}/>)} />
         <Route
           path="/"
           exact
@@ -37,7 +29,7 @@ class BooksApp extends Component {
               <div className="list-books-title">
                 <h1>MyReads</h1>
               </div>
-              <BookShelf />
+              <BookShelf onMyReadsRequested={this.getMyReads}/>
               <div className="open-search">
                 <Link to="/search">Add a book</Link>
               </div>
