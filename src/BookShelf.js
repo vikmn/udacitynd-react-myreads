@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import BooksGrid from "./BooksGrid";
-import { getAll } from "./BooksAPI";
 import { groupBy, categories } from "./Utils";
 
 import "./App.css";
@@ -8,19 +7,26 @@ import "./App.css";
 class BookShelf extends Component {
   constructor(props) {
     super(props);
-    const groupedBooks = groupBy(props.myReads, "shelf");
+    this.state = {
+      categories: [],
+      shelves: []
+    };
+  }
+
+  componentDidMount() {
+    const groupedBooks = groupBy(this.props.myReads, "shelf");
     const shelves = categories.map(category => {
+      const books = groupedBooks[category.value];
       return {
         name: category.name,
         value: category.value,
-        books: groupedBooks[category.value] || []
+        books: books || []
       };
     });
-
-    this.state = {
-      categories: shelves.map(shelf => shelf.value),
+    this.setState({
+      categories: categories.map(category => category.value),
       shelves: shelves
-    };
+    });
   }
 
   updateMyReads = book => {
