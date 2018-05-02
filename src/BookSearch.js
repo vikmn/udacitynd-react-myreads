@@ -9,7 +9,6 @@ class BookSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [],
       shelf: {
         name: "None",
         value: "none",
@@ -19,22 +18,28 @@ class BookSearch extends Component {
   }
 
   populateResults = results => {
-    const books = results.filter(result => this.props.myReads.filter(myread => myread.id !== result.id));
-    const shelf = {
-      name: "None",
-      value: "none",
-      books: books
-    };
-    console.log(shelf);
-    this.setState({
-      books: books,
-      shelf: shelf
-    });
+    this.props.onMyReadsRequested()
+      .then(myReads => {
+        const excludeBooks = myReads.reduce(
+          (exclude, book) => {
+            exclude[book.id] = exclude[book.id] || true;
+            return exclude;
+          }, {});
+
+        const books = results.filter(result => !excludeBooks[result.id]);
+        const shelf = {
+          name: "None",
+          value: "none",
+          books: books
+        };
+        this.setState({
+          shelf: shelf
+        });
+      });
   }
 
   doSearch = event => {
     const { value } = event.target;
-    
     search(value).then(results => {
       if (!Array.isArray(results)) {
         results = [];
