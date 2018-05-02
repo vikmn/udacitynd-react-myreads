@@ -14,15 +14,7 @@ class BooksApp extends Component {
     this.state = { books: [] };
   }
 
-  getMyReads = () => {
-    getAll().then(books => {
-      this.setState({ books });
-    });
-  };
-
-  componentDidMount() {
-    this.getMyReads();
-  }
+  getMyReads = () => getAll();
 
   render() {
     return (
@@ -37,7 +29,7 @@ class BooksApp extends Component {
               <div className="list-books-title">
                 <h1>MyReads</h1>
               </div>
-              <BookShelf myReads={this.state.books}/>
+              <BookShelf onMyReadsRequested={this.getMyReads}/>
               <div className="open-search">
                 <Link to="/search">Add a book</Link>
               </div>

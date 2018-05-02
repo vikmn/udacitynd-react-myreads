@@ -14,18 +14,21 @@ class BookShelf extends Component {
   }
 
   componentDidMount() {
-    const groupedBooks = groupBy(this.props.myReads, "shelf");
-    const shelves = categories.map(category => {
-      const books = groupedBooks[category.value];
-      return {
-        name: category.name,
-        value: category.value,
-        books: books || []
-      };
-    });
-    this.setState({
-      categories: categories.map(category => category.value),
-      shelves: shelves
+    this.props.onMyReadsRequested()
+      .then(myReads => {
+        const groupedBooks = groupBy(myReads, "shelf");
+        const shelves = categories.map(category => {
+          const books = groupedBooks[category.value];
+          return {
+            name: category.name,
+            value: category.value,
+            books: books || []
+          };
+        });
+        this.setState({
+          categories: categories.map(category => category.value),
+          shelves: shelves
+        });
     });
   }
 
